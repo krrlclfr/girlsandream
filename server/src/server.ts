@@ -13,6 +13,7 @@ const startServer = async () => {
 
     // ✅ Start server only if DB is connected
     app.listen(PORT, () => {
+      console.log(`🚀 TEST`);
       console.log(`🚀 Server running at http://localhost:${PORT}`);
     });
 
