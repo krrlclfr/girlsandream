@@ -1,5 +1,5 @@
 # Use official Node.js image
-FROM node:18
+FROM node:22
 
 # Create app directory
 WORKDIR /app
@@ -9,6 +9,8 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install
+
+RUN npm run build
 
 # Copy all files
 COPY . .
