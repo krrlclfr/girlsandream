@@ -1,22 +1,18 @@
-# Use official Node.js image
-FROM node:22
-
-# Create app directory
+FROM node:18
 WORKDIR /app
 
-# Copy package files
+# Copy package files and install dependencies
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
 
-RUN npm run build
-
-# Copy all files
+# Copy all source code
 COPY . .
 
-# Expose port (Render uses dynamic port)
+# Build TypeScript
+RUN npm run build
+
+# Expose port
 EXPOSE 10000
 
-# Start the app
+# Start server
 CMD ["npm", "start"]
