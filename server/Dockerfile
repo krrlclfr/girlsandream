@@ -1,19 +1,23 @@
+# Use Node 18 for stability
 FROM node:18
 
-WORKDIR /app
+# Set working directory to server folder
+WORKDIR /app/server
 
-# Copy package files and install ALL dependencies
-COPY package*.json ./
+# Copy only server package.json & package-lock.json first
+COPY server/package*.json ./
+
+# Install all dependencies (including devDependencies like TypeScript)
 RUN npm install
 
-# Copy source files
-COPY . .
+# Copy the server source code
+COPY server/ ./
 
-# Build TypeScript using npx
+# Build TypeScript
 RUN npx tsc
 
-# Expose port (Render dynamic)
+# Expose port (Render dynamic port)
 EXPOSE 10000
 
-# Start server
+# Start the server
 CMD ["node", "dist/server.js"]
