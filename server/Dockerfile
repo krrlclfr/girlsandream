@@ -9,8 +9,8 @@ RUN npm install
 # Copy source files
 COPY . .
 
-# Build TypeScript using npx
-RUN npx tsc
+# ✅ Directly run tsc via node (no permission issues)
+RUN node ./node_modules/typescript/bin/tsc
 
 # Expose port (Render dynamic)
 EXPOSE 10000
